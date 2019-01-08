@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include '_flashmessages.html' %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- Bootstrap -->
+        <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            {% block content %}{% endblock %}
+
+            <div id="footer" class="col-md-offset-3 col-md-6 bg-footer">
+                <hr />
+                <footer>
+                    &copy; Copyright 2018
+                </footer>
+            </div>
+        </div>
+
+        <!-- jQuery for Bootstrap -->
+        <script src="{{ url_for('static', filename='javascript/jquery-1.11.2.min.js') }}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+
+                var docHeight = $(window).height();
+                var footerHeight = $('#footer').height();
+                var footerTop = $('#footer').position().top + footerHeight;
+
+                if (footerTop < docHeight) {
+                    $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
+                }
+            });
+        </script>
+    </body>
+</html>
